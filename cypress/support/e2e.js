@@ -14,6 +14,7 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+
 import './pages/LoginPage.js'
+import './pages/Products.js'
 import './pages/Checkout.js'

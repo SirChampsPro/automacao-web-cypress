@@ -1,27 +1,41 @@
 /// <reference types="Cypress"/>
+import Checkout from "../../support/pages/Checkout";
 import LoginPage from "../../support/pages/LoginPage";
+import Products from "../../support/pages/Products";
 describe('Validar fluxo checkout', () => {
-    it('Realizar login', () => {
+    it('Realizar login, adicionar produtos ao carrinho e concluir compra', () => {
         LoginPage.visit();
-        LoginPage.login('standard_user', 'secret_sauce')
+        LoginPage.login('standard_user', 'secret_sauce');
+        Products.verificadorPagina('Products');
         
-        cy.get('[data-test="title"]').should('have.text', 'Products')
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-        cy.get('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').click();
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
-        cy.get('[data-test="add-to-cart-sauce-labs-onesie"]').click();
-        cy.get('[data-test="shopping-cart-link"]').should('have.text', '4');
+        Products.adicionarProdutosCarrinho('[data-test="add-to-cart-sauce-labs-backpack"]');
+        Products.adicionarProdutosCarrinho('[data-test="add-to-cart-sauce-labs-fleece-jacket"]');
+        Products.adicionarProdutosCarrinho('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]');
+        Products.adicionarProdutosCarrinho('[data-test="add-to-cart-sauce-labs-onesie"]');
+
+        Products.verificaQtdItensCarrinho('4');
+
+        Products.removerProdutosCarrinho('[data-test="remove-sauce-labs-fleece-jacket"]');
+
+        Products.verificaQtdItensCarrinho('3');
+
         cy.get('[data-test="shopping-cart-link"]').click();
-        cy.get('[data-test="title"]').should('have.text', 'Your Cart')
+        Products.verificadorPagina('Your Cart');
+
+        Products.removerProdutosCarrinho('[data-test="remove-sauce-labs-bolt-t-shirt"]');
+        Products.verificaQtdItensCarrinho('2');
+
         cy.get('[data-test="checkout"]').click();
-        cy.get('[data-test="title"]').should('have.text', 'Checkout: Your Information')
-        cy.get('[data-test="firstName"]').type('ChampsQA');
-        cy.get('[data-test="lastName"]').type('Tester');
-        cy.get('[data-test="postalCode"]').type('22233345');
-        cy.get('[data-test="continue"]').click();
-        cy.get('[data-test="title"]').should('have.text', 'Checkout: Overview')
+
+        Products.verificadorPagina('Checkout: Your Information');
+
+        Checkout.preencherFormulario('ChampsQA', 'Tester', '22233345');
+
+        Products.verificadorPagina('Checkout: Overview');
         cy.get('[data-test="finish"]').click();
-        cy.get('[data-test="secondary-header"]').should('have.text', 'Checkout: Complete!')
+
+        Products.verificadorCompra('Checkout: Complete!');
 
     });
+    
 });
