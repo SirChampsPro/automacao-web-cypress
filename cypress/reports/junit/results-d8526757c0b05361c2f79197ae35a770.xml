@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="12.271" tests="3" failures="2">
+  <testsuite name="Root Suite" timestamp="2025-08-13T06:07:32" tests="0" file="cypress\e2e\login\gui_login.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Validar fluxo de login" timestamp="2025-08-13T06:07:32" tests="3" time="12.271" failures="2">
+    <testcase name="Validar fluxo de login Validar login com sucesso" time="1.628" classname="Validar login com sucesso">
+    </testcase>
+    <testcase name="Validar fluxo de login Validar login com usuario invalido" time="0.000" classname="Validar login com usuario invalido">
+      <failure message="Timed out retrying after 4000ms: Expected to find element: `[data-test=&quot;error&quot;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-test="error"]`, but never found it.
+    at Context.eval (webpack://automacao-web-cypress/./cypress/e2e/login/gui_login.cy.js:30:38)]]></failure>
+    </testcase>
+    <testcase name="Validar fluxo de login Realizar login com senha invalida" time="0.000" classname="Realizar login com senha invalida">
+      <failure message="Timed out retrying after 4000ms: Expected to find element: `[data-test=&quot;error&quot;]`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-test="error"]`, but never found it.
+    at Context.eval (webpack://automacao-web-cypress/./cypress/e2e/login/gui_login.cy.js:44:38)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

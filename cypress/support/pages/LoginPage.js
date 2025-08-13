@@ -18,7 +18,6 @@ class LoginPage {
     login(usuario, senha) {
         this.preencherUsuario(usuario)
         this.preencherSenha(senha)
-        this.clicarLogin();
     }
 }
 

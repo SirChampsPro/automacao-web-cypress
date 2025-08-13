@@ -20,7 +20,6 @@ class Checkout {
         this.preencherPrimeiroNome(primeiroNome);
         this.preencherUltimoNome(ultimoNome);
         this.preencherCodigoPostal(codigo);
-        this.clicarConfirmacao();
     }
 }
 
