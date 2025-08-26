@@ -1,4 +1,4 @@
-/// <reference types="Cypress"/>
+/// <reference types="cypress"/>
 import Checkout from "../../support/pages/Checkout";
 import LoginPage from "../../support/pages/LoginPage";
 import Products from "../../support/pages/Products";
