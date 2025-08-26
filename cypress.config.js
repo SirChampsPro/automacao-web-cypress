@@ -12,7 +12,8 @@ module.exports = defineConfig({
       reportPageTitle: 'Relatorio de testes',
       embeddedScreenshots: true,
       inlineAssets: true,
-      saveAllAttempts: false
+      saveAllAttempts: false,
+      json: true
     }
   },
   chromeWebSecurity: false,
