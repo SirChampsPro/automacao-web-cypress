@@ -29,6 +29,9 @@ jobs:
       - name: Run Cypress tests
         run: npx cypress run
 
+      - name: Fix permissions
+        run: chmod +x ./node_modules/.bin/mochawesome-merge ./node_modules/.bin/marge
+
       - name: Generate Mochawesome report
         run: |
           mkdir -p cypress/reports/html
