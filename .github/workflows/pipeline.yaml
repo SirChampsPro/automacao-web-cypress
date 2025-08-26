@@ -30,8 +30,7 @@ jobs:
         run: mkdir -p cypress/reports/mochawesome
   
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        run: npx cypress run
+        run: npx cypress run --reporter github-actions
 
       - name: Fix permissions
         run: chmod +x ./node_modules/.bin/mochawesome-merge ./node_modules/.bin/marge
