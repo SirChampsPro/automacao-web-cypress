@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  cypress-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,33 +19,37 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        
+      - name: Install cypress
+        run: npm ci
+
+      - name: Fix Cypress permissions
+        run: chmod +x ./node_modules/.bin/cypress
 
       - name: Prepare reports folder
         run: mkdir -p cypress/reports/mochawesome
-
+  
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
-        with:
-          start: npx --no-install serverest --port 3000
-          wait-on: "http://localhost:3000"
-          wait-on-timeout: 15
-          browser: electron
-          record: false
-          
-      - name: Generate Mochawesome HTML report
+        run: npx cypress run
+
+      - name: Fix permissions
+        run: chmod +x ./node_modules/.bin/mochawesome-merge ./node_modules/.bin/marge
+
+      - name: Generate Mochawesome report
         run: |
           mkdir -p cypress/reports/html
           if compgen -G "cypress/reports/mochawesome/*.json" > /dev/null; then
-            ./node_modules/.bin/mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/report.json
-            ./node_modules/.bin/marge cypress/reports/report.json --reportDir cypress/reports/html
+          npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/report.json
+          npx marge cypress/reports/report.json --reportDir cypress/reports/html
           else
-            echo "Nenhum JSON do Mochawesome encontrado, pulando merge."
+          echo "Nenhum JSON do Mochawesome encontrado, pulando merge."
           fi
 
       - name: Upload Cypress reports
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-reports
+          name: cypress-report
           path: |
             cypress/reports/html
             cypress/screenshots
