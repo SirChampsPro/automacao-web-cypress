@@ -48,5 +48,3 @@ jobs:
           name: cypress-report
           path: |
             cypress/reports/html
-            cypress/screenshots
-            cypress/videos
