@@ -8,12 +8,12 @@ module.exports = defineConfig({
       mochaFile: 'cypress/reports/junit/results-[hash].xml'
     },
     cypressMochawesomeReporterReporterOptions: {
-      reportDir: 'cypress/reports/mochawesome',
       charts: true,
       reportPageTitle: 'Relatorio de testes',
       embeddedScreenshots: true,
       inlineAssets: true,
       saveAllAttempts: false,
+      reportDir: 'cypress/reports/mochawesome',
       json: true
     }
   },

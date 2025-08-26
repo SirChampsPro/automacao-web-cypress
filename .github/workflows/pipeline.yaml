@@ -32,11 +32,15 @@ jobs:
       - name: Fix permissions
         run: chmod +x ./node_modules/.bin/mochawesome-merge ./node_modules/.bin/marge
 
-      - name: Gerar relatório HTML
+      - name: Generate Mochawesome report
         run: |
           mkdir -p cypress/reports/html
-          ./node_modules/.bin/mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/report.json
-          ./node_modules/.bin/marge cypress/reports/report.json --reportDir cypress/reports/html
+          if compgen -G "cypress/reports/mochawesome/*.json" > /dev/null; then
+          npx mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/report.json
+          npx marge cypress/reports/report.json --reportDir cypress/reports/html
+          else
+          echo "Nenhum JSON do Mochawesome encontrado, pulando merge."
+          fi
 
       - name: Upload Cypress report
         uses: actions/upload-artifact@v4
