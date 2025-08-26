@@ -25,6 +25,9 @@ jobs:
 
       - name: Fix Cypress permissions
         run: chmod +x ./node_modules/.bin/cypress
+
+      - name: Prepare reports folder
+        run: mkdir -p cypress/reports/mochawesome
   
       - name: Run Cypress tests
         run: npx cypress run
