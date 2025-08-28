@@ -1,6 +1,9 @@
 Requisitos:
 
-Para rodar o projeto é necessário configurar o cypress
+VS Code instalado
+Cypress configurado;
+
+Para rodar:
 
 Abrir o terminal do vs code e rodar o comando: "npx cypress open" para abrir o cypress ou "npx cypress run" para rodar o projeto
 
